@@ -4,7 +4,7 @@
             <x-authentication-card-logo />
         </x-slot>
 
-        <div class="mb-4 text-sm text-secondary-color-600 dark:text-secondary-color-400">
+        <div class="mb-4 text-sm text-secondary-600 dark:text-secondary-400">
             {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
         </div>
 
@@ -28,14 +28,14 @@
             <div>
                 <a
                     href="{{ route('profile.show') }}"
-                    class="underline text-sm text-secondary-color-600 dark:text-secondary-color-400 hover:text-secondary-color-900 dark:hover:text-secondary-color-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color-500 dark:focus:ring-offset-secondary-color-800"
+                    class="underline text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-900 dark:hover:text-secondary-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-secondary-800"
                 >
                     {{ __('Edit Profile') }}</a>
 
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
 
-                    <button type="submit" class="underline text-sm text-secondary-color-600 dark:text-secondary-color-400 hover:text-secondary-color-900 dark:hover:text-secondary-color-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color-500 dark:focus:ring-offset-secondary-color-800 ms-2">
+                    <button type="submit" class="underline text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-900 dark:hover:text-secondary-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-secondary-800 ms-2">
                         {{ __('Log Out') }}
                     </button>
                 </form>

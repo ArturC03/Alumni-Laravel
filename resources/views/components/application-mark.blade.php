@@ -1,6 +1,3 @@
 <img id="logo"
-     src="{{ asset('images/ispgaya-logo.svg') }}"
-     data-light-src="{{ asset('images/ispgaya-logo.svg') }}"
-     data-dark-src="{{ asset('images/ispgaya-logo-negative.svg') }}"
-     alt="Logo ISPGAYA" />
-
+    src="{{ session('theme') == 'dark' ? asset('images/ispgaya-logo-negative.svg') : asset('images/ispgaya-logo.svg') }}"
+    alt="Logo ISPGAYA" />

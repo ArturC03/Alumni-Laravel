@@ -1,61 +1,130 @@
-<nav x-data="{ mobileMenuOpen: false }"
-    class="h-[95dvh] sticky dark:bg-secondary-color-900 border-r border-gray-200 dark:border-secondary-color-800 flex flex-col items-center">
+<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <!-- Esquerda: Logo e Links -->
+            <div class="flex">
+                <div class="shrink-0 flex items-center">
+                    <a href="{{ route('welcome') }}">
+                        <x-application-mark class="block h-9 w-auto" />
+                    </a>
+                </div>
 
-    <!-- Logo -->
-    <div class="mb-6">
-        <a href="{{ route('welcome') }}" class="flex items-center justify-center mx-4">
-            <x-application-logo class="block h-10 w-auto" />
-        </a>
+                <div class="hidden sm:flex space-x-8 sm:-my-px sm:ml-10">
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+            </div>
+
+            <!-- Direita: Dropdowns -->
+            <div class="hidden sm:flex items-center">
+                @auth
+                <!-- Times Dropdown -->
+                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button
+                            class="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                            {{ Auth::user()->currentTeam->name }}
+                            <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 20 20" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 10l5 5 5-5H5z" />
+                            </svg>
+                        </button>
+                    </x-slot>
+                    <x-slot name="content">
+                        <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                            {{ __('Team Settings') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="{{ route('teams.create') }}">
+                            {{ __('Create New Team') }}
+                        </x-dropdown-link>
+                    </x-slot>
+                </x-dropdown>
+                @endif
+
+                <!-- User Dropdown -->
+                <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none">
+                            <img class="h-8 w-8 rounded-full object-cover"
+                                src="{{ Auth::user()->profile_photo_url }}"
+                                alt="{{ Auth::user()->name }}" />
+                        </button>
+                    </x-slot>
+                    <x-slot name="content">
+                        <x-dropdown-link href="{{ route('profile.show') }}">
+                            {{ __('Profile') }}
+                        </x-dropdown-link>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                {{ __('Logout') }}
+                            </x-dropdown-link>
+                        </form>
+                    </x-slot>
+                </x-dropdown>
+                @else
+                <div>
+                    <a href="{{ route('login') }}"
+                        class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                        {{ __('Log in') }}
+                    </a>
+                    @if (Route::has('register'))
+                    <a href="{{ route('register') }}"
+                        class="ml-4 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                        {{ __('Register') }}
+                    </a>
+                    @endif
+                </div>
+                @endauth
+            </div>
+
+            <!-- Hamburger Icon -->
+            <div class="-mr-2 flex items-center sm:hidden">
+                <button @click="open = !open"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 dark:text-gray-200 dark:hover:text-gray-300">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- Navigation Links -->
-    <div class="flex-1 w-full space-y-4 flex flex-col items-center">
-        @if (Auth::check())
-        <!-- Welcome -->
-        <a href="{{ route('welcome') }}"
-            class="w-full flex items-center justify-center p-3 rounded-lg hover:bg-secondary-color-100 dark:hover:bg-secondary-color-800
-                      {{ request()->routeIs('welcome') ? 'bg-secondary-color-100 dark:bg-secondary-color-800 text-primary-color' : 'text-secondary-color-500 dark:text-secondary-color-400' }}">
-            <x-bladewind::icon name="home" size="6"></x-bladewind::icon>
-        </a>
-
-        <!-- Profile -->
-        <a href="{{ route('profile.show') }}"
-            class="w-full flex items-center justify-center p-3 rounded-lg hover:bg-secondary-color-100 dark:hover:bg-secondary-color-800
-                      {{ request()->routeIs('profile.show') ? 'bg-secondary-color-100 dark:bg-secondary-color-800 text-primary-color' : 'text-secondary-color-500 dark:text-secondary-color-400' }}">
-            <x-bladewind::icon name="user" size="6"></x-bladewind::icon>
-        </a>
-
-        <!-- Logout -->
-        <form method="POST" action="{{ route('logout') }}" x-data class="w-full flex items-center justify-center">
-            @csrf
-            <button @click.prevent="$root.submit();"
-                class="w-full flex items-center justify-center p-3 rounded-lg hover:bg-secondary-color-100 dark:hover:bg-secondary-color-800 text-secondary-color-500 dark:text-secondary-color-400">
-                <x-bladewind::icon name="power" size="6"></x-bladewind::icon>
-            </button>
-        </form>
-        @else
-        <!-- Login -->
-        <a href="{{ route('login') }}"
-            class="w-full flex items-center justify-center p-3 rounded-lg hover:bg-secondary-color-100 dark:hover:bg-secondary-color-800 text-secondary-color-500 dark:text-secondary-color-400">
-            <x-bladewind::icon name="login" size="6"></x-bladewind::icon>
-        </a>
-
-        <!-- Register -->
-        <a href="{{ route('register') }}"
-            class="w-full flex items-center justify-center p-3 rounded-lg hover:bg-secondary-color-100 dark:hover:bg-secondary-color-800 text-secondary-color-500 dark:text-secondary-color-400">
-            <x-bladewind::icon name="user-plus" size="6"></x-bladewind::icon>
-        </a>
-        @endif
+    <!-- Responsivo -->
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+            @auth
+            <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                {{ __('Profile') }}
+            </x-responsive-nav-link>
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
+                <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                    {{ __('Logout') }}
+                </x-responsive-nav-link>
+            </form>
+            @else
+            <x-responsive-nav-link href="{{ route('login') }}">
+                {{ __('Log in') }}
+            </x-responsive-nav-link>
+            @if (Route::has('register'))
+            <x-responsive-nav-link href="{{ route('register') }}">
+                {{ __('Register') }}
+            </x-responsive-nav-link>
+            @endif
+            @endauth
+        </div>
     </div>
-
-    @if (Auth::check())
-    <!-- User Profile Section -->
-    <div class="w-full">
-        <a href="{{ route('profile.show') }}" class="flex items-center justify-center">
-            <img class="h-10 w-10 rounded-full object-cover ring-2 ring-primary-color"
-                src="{{ Auth::user()->profile_photo_url }}"
-                alt="{{ Auth::user()->name }}">
-        </a>
-    </div>
-    @endif
 </nav>

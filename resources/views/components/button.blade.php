@@ -13,18 +13,18 @@
             transition-all
             duration-150
             ease-in-out
-            bg-primary-color
+            bg-primary
             text-white
-            hover:bg-primary-color-500
+            hover:bg-primary-500
             focus:outline-none
             focus:ring-2
-            focus:ring-primary-color/50
+            focus:ring-primary/50
             focus:ring-offset-2
-            dark:bg-secondary-color-50
-            dark:text-secondary-color-800
-            dark:hover:bg-secondary-color-100
-            dark:focus:ring-primary-color
-            dark:focus:ring-offset-secondary-color-400
+            dark:bg-secondary-50
+            dark:text-secondary-800
+            dark:hover:bg-secondary-100
+            dark:focus:ring-primary
+            dark:focus:ring-offset-secondary-400
             disabled:opacity-50
             disabled:cursor-not-allowed
         '

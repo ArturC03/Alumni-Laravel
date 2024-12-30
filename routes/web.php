@@ -9,7 +9,8 @@ use \App\Http\Controllers\WelcomeController;
 use \App\Http\Controllers\FollowerController;
 use App\Http\Controllers\UserProfileController;
 
-Route::get('/',
+Route::get(
+    '/',
     [WelcomeController::class, 'index']
 )->name('welcome');
 
@@ -23,14 +24,15 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/publicacao/criar',
+    Route::get(
+        '/publicacao/criar',
         [PublicacaoController::class, 'criar']
     )->name('publicacao.criar');
 
-    Route::post('/publicacao',
+    Route::post(
+        '/publicacao',
         [PublicacaoController::class, 'guardar']
     )->name('publicacao.guardar');
-
 });
 
 Route::get('/set-theme/{theme}', function ($theme) {
@@ -50,4 +52,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::post('/comentarios/{publicacao}', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 Route::get('/perfil/{identifier}', [UserProfileController::class, 'show'])
-    ->name('user.');
+    ->name('perfil.show');

@@ -37,8 +37,8 @@
 
                             <div class="ms-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-secondary-color-600 dark:text-secondary-color-400 hover:text-secondary-color-900 dark:hover:text-secondary-color-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color-500 dark:focus:ring-offset-secondary-color-800">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-secondary-color-600 dark:text-secondary-color-400 hover:text-secondary-color-900 dark:hover:text-secondary-color-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color-500 dark:focus:ring-offset-secondary-color-800">'.__('Privacy Policy').'</a>',
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-900 dark:hover:text-secondary-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-secondary-800">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-900 dark:hover:text-secondary-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-secondary-800">'.__('Privacy Policy').'</a>',
                                 ]) !!}
                             </div>
                         </div>
@@ -47,7 +47,7 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-secondary-color-600 dark:text-secondary-color-400 hover:text-secondary-color-900 dark:hover:text-secondary-color-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-color-500 dark:focus:ring-offset-secondary-color-800" href="{{ route('login') }}">
+                <a class="underline text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-900 dark:hover:text-secondary-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-secondary-800" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 

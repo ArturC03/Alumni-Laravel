@@ -27,10 +27,10 @@
         @livewire('navigation-menu')
         <x-banner />
 
-        <div class="min-h-screen bg-secondary-color-50 dark:bg-secondary-color-900">
+        <div class="min-h-screen bg-secondary-50 dark:bg-secondary-900">
 
             @if (isset($header))
-                    <header class="bg-white dark:bg-secondary-color-800 dark:text-secondary-color-50 shadow">
+                    <header class="bg-white dark:bg-secondary-800 dark:text-secondary-50 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

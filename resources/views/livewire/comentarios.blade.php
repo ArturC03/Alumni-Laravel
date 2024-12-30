@@ -1,4 +1,4 @@
-<div wire:poll.5s class="bg-gray-50 dark:bg-secondary-color-900 border-t border-gray-200 dark:border-secondary-color-700 px-4 py-3">
+<div wire:poll.5s class="bg-gray-50 dark:bg-secondary-900 border-t border-gray-200 dark:border-secondary-700 px-4 py-3">
     @auth
         <!-- Campo para adicionar um novo comentário -->
         <div class="flex items-start space-x-3 mb-5">
@@ -30,12 +30,12 @@
                 <!-- Foto do autor -->
                 <img src="{{ $comentario->user->profile_photo_url }}" alt="{{ $comentario->user->name }}" class="w-8 h-8 rounded-full">
                 <!-- Corpo do Comentário -->
-                <div class="bg-white dark:bg-secondary-color-700 w-full rounded-md shadow-sm p-3">
+                <div class="bg-white dark:bg-secondary-700 w-full rounded-md shadow-sm p-3">
                     <div class="flex justify-between items-center">
-                        <h4 class="font-semibold text-sm text-gray-800 dark:text-secondary-color-50">{{ $comentario->user->name }}</h4>
-                        <span class="text-xs text-gray-500 dark:text-secondary-color-400">{{ $comentario->created_at->diffForHumans() }}</span>
+                        <h4 class="font-semibold text-sm text-gray-800 dark:text-secondary-50">{{ $comentario->user->name }}</h4>
+                        <span class="text-xs text-gray-500 dark:text-secondary-400">{{ $comentario->created_at->diffForHumans() }}</span>
                     </div>
-                    <p class="text-gray-700 dark:text-secondary-color-200 text-sm mt-2">{{ $comentario->conteudo }}</p>
+                    <p class="text-gray-700 dark:text-secondary-200 text-sm mt-2">{{ $comentario->conteudo }}</p>
                 </div>
             </div>
 
@@ -47,19 +47,19 @@
                             <!-- Foto do autor -->
                             <img src="{{ $resposta->user->profile_photo_url }}" alt="{{ $resposta->user->name }}" class="w-7 h-7 rounded-full">
                             <!-- Corpo da Resposta -->
-                            <div class="bg-gray-100 dark:bg-secondary-color-800 w-full rounded-md shadow-sm p-3">
+                            <div class="bg-gray-100 dark:bg-secondary-800 w-full rounded-md shadow-sm p-3">
                                 <div class="flex justify-between items-center">
-                                    <h4 class="font-semibold text-sm text-gray-800 dark:text-secondary-color-50">{{ $resposta->user->name }}</h4>
-                                    <span class="text-xs text-gray-500 dark:text-secondary-color-400">{{ $resposta->created_at->diffForHumans() }}</span>
+                                    <h4 class="font-semibold text-sm text-gray-800 dark:text-secondary-50">{{ $resposta->user->name }}</h4>
+                                    <span class="text-xs text-gray-500 dark:text-secondary-400">{{ $resposta->created_at->diffForHumans() }}</span>
                                 </div>
-                                <p class="text-gray-700 dark:text-secondary-color-200 text-sm mt-2">{{ $resposta->conteudo }}</p>
+                                <p class="text-gray-700 dark:text-secondary-200 text-sm mt-2">{{ $resposta->conteudo }}</p>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @endif
         @empty
-            <p class="text-center text-gray-500 dark:text-secondary-color-400 text-sm">
+            <p class="text-center text-gray-500 dark:text-secondary-400 text-sm">
                 Nenhum comentário ainda. Seja o primeiro a comentar!
             </p>
         @endforelse

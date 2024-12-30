@@ -4,7 +4,7 @@
             <x-authentication-card-logo />
         </x-slot>
 
-        <div class="mb-4 text-sm text-secondary-color-600 dark:text-secondary-color-400">
+        <div class="mb-4 text-sm text-primary-600 dark:text-primary-400">
             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </div>
 

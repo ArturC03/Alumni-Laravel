@@ -1,11 +1,11 @@
 <x-guest-layout>
-    <div class="pt-4 bg-secondary-color-100 dark:bg-secondary-color-900">
+    <div class="pt-4 bg-secondary-100 dark:bg-secondary-900">
         <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
             <div>
                 <x-authentication-card-logo />
             </div>
 
-            <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white dark:bg-secondary-color-800 shadow-md overflow-hidden sm:rounded-lg prose dark:prose-invert">
+            <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white dark:bg-secondary-800 shadow-md overflow-hidden sm:rounded-lg prose dark:prose-invert">
                 {!! $policy !!}
             </div>
         </div>

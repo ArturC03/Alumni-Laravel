@@ -18,7 +18,7 @@ export default {
                 sans: ['Open Sans', 'sans-serif'],     // Para fontes sans-serif
             },
             colors: {
-                'primary-color': {
+                'primary': {
                     DEFAULT: '#fb923c', // Cor principal
                     50: '#fff3ec',
                     100: '#fee8d6',
@@ -39,7 +39,7 @@ export default {
                     850: '#b14a19',
                     900: '#a03f15',
                 },
-                'secondary-color': {
+                'secondary': {
                     DEFAULT: '#151b26', // Cor cinza escuro
                     50: '#ced1d7',
                     100: '#9ca1aa',

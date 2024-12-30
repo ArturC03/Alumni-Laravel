@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-secondary-color-800 dark:text-secondary-color-200 leading-tight">
+        <h2 class="font-semibold text-xl text-secondary-800 dark:text-secondary-200 leading-tight">
             {{ __('Criar Publicação') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-secondary-color-700 overflow-hidden shadow-xl sm:rounded-lg p-6">
+            <div class="bg-white dark:bg-secondary-700 overflow-hidden shadow-xl sm:rounded-lg p-6">
 
                 <form action="{{ route('publicacao.guardar') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -34,7 +34,7 @@
                             id="conteudo"
                             name="conteudo"
                             rows="4"
-                            class="border-secondary-color-300 dark:border-secondary-color-700 dark:bg-secondary-color-900 dark:text-secondary-color-300 focus:border-primary-color-500 dark:focus:border-primary-color-600 focus:ring-primary-color-500 dark:focus:ring-primary-color-600 rounded-md shadow-sm mt-1 block w-full"
+                            class="border-secondary-300 dark:border-secondary-700 dark:bg-secondary-900 dark:text-secondary-300 focus:border-primary-500 dark:focus:border-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 rounded-md shadow-sm mt-1 block w-full"
                             required
                         >{{ old('conteudo') }}</x-textarea>
                         <x-input-error for="conteudo" class="mt-2"/>
@@ -55,7 +55,7 @@
                         <!-- Botão Personalizado -->
                         <label
                             for="midia"
-                            class="cursor-pointer flex items-center justify-center w-full p-4 border-dashed border-2 border-secondary-color-300 dark:border-secondary-color-700 rounded-md shadow-sm bg-white dark:bg-secondary-color-900 text-secondary-color-600 dark:text-secondary-color-300 hover:bg-primary-color-200 dark:hover:bg-secondary-color-700 dark:hover:border-primary-color transition"
+                            class="cursor-pointer flex items-center justify-center w-full p-4 border-dashed border-2 border-secondary-300 dark:border-secondary-700 rounded-md shadow-sm bg-white dark:bg-secondary-900 text-secondary-600 dark:text-secondary-300 hover:bg-primary-200 dark:hover:bg-secondary-700 dark:hover:border-primary transition"
                         >
                             <span class="text-base font-medium">{{ __('Clique para selecionar um ficheiro') }}</span>
                         </label>
@@ -74,7 +74,7 @@
                         <select
                             id="visibilidade_id"
                             name="visibilidade_id"
-                            class="border-secondary-color-300 dark:border-secondary-color-700 dark:bg-secondary-color-900 dark:text-secondary-color-300 focus:border-primary-color-500 dark:focus:border-primary-color-600 focus:ring-primary-color-500 dark:focus:ring-primary-color-600 rounded-md shadow-sm mt-1 block w-full"
+                            class="border-secondary-300 dark:border-secondary-700 dark:bg-secondary-900 dark:text-secondary-300 focus:border-primary-500 dark:focus:border-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 rounded-md shadow-sm mt-1 block w-full"
                             required
                         >
                             <option value="">{{ __('Selecione a visibilidade') }}</option>
@@ -104,10 +104,10 @@
     <!-- Modal -->
     <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
         <div id="modal-content"
-             class="relative bg-white p-4 rounded-md dark:bg-secondary-color-900 shadow-md max-w-3xl max-h-[90%] overflow-auto">
+             class="relative bg-white p-4 rounded-md dark:bg-secondary-900 shadow-md max-w-3xl max-h-[90%] overflow-auto">
             <button
                 onclick="closeModal()"
-                class="absolute top-2 right-2 text-4 text-secondary-color-800 dark:text-secondary-color-300 hover:text-red-500"
+                class="absolute top-2 right-2 text-4 text-secondary-800 dark:text-secondary-300 hover:text-red-500"
             >
                 &#10005;
             </button>
@@ -136,7 +136,7 @@
                 element.controls = true;
             } else {
                 const message = document.createElement('span');
-                message.className = 'text-secondary-color-600 dark:text-secondary-color-300';
+                message.className = 'text-secondary-600 dark:text-secondary-300';
                 message.textContent = 'Formato não suportado';
                 previewContainer.appendChild(message);
                 return;
@@ -154,7 +154,7 @@
             modalContent.innerHTML = `
                 <button
                     onclick="closeModal()"
-                    class="block text-secondary-color-800 dark:text-secondary-color-300 hover:text-red-500"
+                    class="block text-secondary-800 dark:text-secondary-300 hover:text-red-500"
                 >
                     &#10005;
                 </button>

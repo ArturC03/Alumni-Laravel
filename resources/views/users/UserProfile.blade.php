@@ -3,7 +3,7 @@
         <div class="bg-white shadow-md rounded-md p-6">
             <!-- Informações do Utilizador -->
             <div class="flex items-center">
-                <img class="h-24 w-24 rounded-full object-cover border-2 border-secondary-color-100"
+                <img class="h-24 w-24 rounded-full object-cover border-2 border-secondary-100"
                      src="{{ $user->profile_photo_url }}"
                      alt="{{ $user->name }}">
                 <div class="ml-6">
