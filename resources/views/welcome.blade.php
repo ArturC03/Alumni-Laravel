@@ -2,10 +2,9 @@
     <main class="mx-auto">
         <div class="flex flex-col lg:flex-row gap-8">
             {{-- Main Feed --}}
-            <section class="flex-1 min-w-0">
-                eardiv class="grid gap-6 justify-items-center">
+            <section class="flex-1 mx-auto  min-w-0">
                 @forelse($publicacoes as $publicacao)
-                <div class="my-4 max-w-md min-w-[20rem]">
+                <div class="mx-auto my-4 max-w-md min-w-[20rem]">
                     <livewire:publicacao-cartao :publicacao="$publicacao" wire:key="publicacao-{{ $publicacao->id }}" />
                 </div> @empty
                 <div class="">

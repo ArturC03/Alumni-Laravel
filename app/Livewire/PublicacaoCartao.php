@@ -9,13 +9,14 @@ class PublicacaoCartao extends Component
 {
     // Variáveis públicas
     public $publicacao; // Objeto da publicação completa recebido da view
+
     public $mostrarComentarios = false; // Indica se os comentários estão visíveis para esta instância
 
     /**
      * Montar o componente recebendo a publicação.
      * Usado para inicializar as propriedades do componente.
      *
-     * @param Publicacao $publicacao - Objeto da publicação
+     * @param  Publicacao  $publicacao  - Objeto da publicação
      */
     public function mount(Publicacao $publicacao)
     {
@@ -28,7 +29,7 @@ class PublicacaoCartao extends Component
      */
     public function toggleComentarios()
     {
-        $this->mostrarComentarios = !$this->mostrarComentarios;
+        $this->mostrarComentarios = ! $this->mostrarComentarios;
     }
 
     /**
@@ -45,7 +46,7 @@ class PublicacaoCartao extends Component
         if ($reacaoExistente) {
             // Atualizar a reação existente
             $reacaoExistente->update([
-                'like' => !(auth()->user()->Reagiu($this->publicacao->id))
+                'like' => ! (auth()->user()->Reagiu($this->publicacao->id)),
             ]);
         } else {
             // Criar uma nova reação
@@ -62,8 +63,8 @@ class PublicacaoCartao extends Component
     /**
      * Método para reagir a um comentário.
      *
-     * @param int $comentarioId - ID do comentário
-     * @param bool $like - Verdadeiro para like, falso para dislike
+     * @param  int  $comentarioId  - ID do comentário
+     * @param  bool  $like  - Verdadeiro para like, falso para dislike
      * @return void
      */
     public function reagirComentario($comentarioId, $like)
@@ -89,6 +90,20 @@ class PublicacaoCartao extends Component
             // Atualizar as reações do comentário
             $comentario->load('reacoes');
         }
+    }
+
+    public function VisualizarPublicacao()
+    {
+        if (auth()->check()) {
+            $visualizou = $this->publicacao->publicacaoVisualizacoes()->where('user_id', auth()->id())->exists();
+
+            if (! $visualizou) {
+                $this->publicacao->publicacaoVisualizacoes()->create([
+                    'user_id' => auth()->id(),
+                ]);
+            }
+        }
+
     }
 
     /**

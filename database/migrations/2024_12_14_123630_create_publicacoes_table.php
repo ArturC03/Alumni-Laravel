@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         // Criar tabela 'midias'
@@ -19,46 +16,52 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Criar tabela 'publicacoes'
+        // Criar tabela 'publicacoes' depois de users
         Schema::create('publicacoes', function (Blueprint $table) {
-            $table->id(); // Chave primária
-            $table->foreignId('midia_id')->nullable()->constrained('midias')->onDelete('set null'); // Relacionamento com a tabela de mídias
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relacionamento com os utilizadores
-            $table->foreignId('visibilidade_id')->constrained('visibilidades')->onDelete('cascade'); // Relacionamento com a tabela de visibilidades
-            $table->string('titulo'); // Título da publicação
-            $table->text('conteudo'); // Conteúdo principal da publicação
-            $table->boolean('ativo')->default(true); // Indica se a publicação está ativa
-            $table->timestamps(); // Campos de created_at e updated_at
+            $table->id();
+            $table->foreignId('midia_id')->nullable()->constrained('midias')->onDelete('set null');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('visibilidade_id')->constrained('visibilidades')->onDelete('cascade');
+            $table->string('titulo');
+            $table->text('conteudo');
+            $table->boolean('ativo')->default(true);
+            $table->timestamps();
         });
 
         // Criar tabela 'comentarios'
         Schema::create('comentarios', function (Blueprint $table) {
-            $table->id(); // Chave primária
-            $table->foreignId('publicacao_id')->constrained('publicacoes')->onDelete('cascade'); // Relacionamento com a publicação principal
-            $table->foreignId('comentario_pai_id')->nullable()->constrained('comentarios')->onDelete('cascade'); // Relacionamento com o comentário pai (para comentários aninhados)
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relacionamento com o autor do comentário
-            $table->text('conteudo'); // Conteúdo do comentário
-            $table->boolean('ativo')->default(true); // Indica se o comentário está ativo
-            $table->timestamps(); // Campos de created_at e updated_at
+            $table->id();
+            $table->foreignId('publicacao_id')->constrained('publicacoes')->onDelete('cascade');
+            $table->foreignId('comentario_pai_id')->nullable()->constrained('comentarios')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->text('conteudo');
+            $table->boolean('ativo')->default(true);
+            $table->timestamps();
         });
 
         // Criar tabela 'reacoes'
         Schema::create('reacoes', function (Blueprint $table) {
-            $table->id(); // Chave primária
-            $table->foreignId('publicacao_id')->nullable()->constrained('publicacoes')->onDelete('cascade'); // Referência à publicação (se a reação for a uma publicação)
-            $table->foreignId('comentario_id')->nullable()->constrained('comentarios')->onDelete('cascade'); // Referência ao comentário (se a reação for a um comentário)
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Referência ao utilizador que deu a reação
-            $table->boolean('like')->default(true); // true para like, falso para dislike
-            $table->timestamps(); // Campos de created_at e updated_at
+            $table->id();
+            $table->foreignId('publicacao_id')->nullable()->constrained('publicacoes')->onDelete('cascade');
+            $table->foreignId('comentario_id')->nullable()->constrained('comentarios')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->boolean('like')->default(true);
+            $table->timestamps();
+        });
+
+        // Criar tabela 'publicacao_visualizacoes'
+        Schema::create('publicacao_visualizacoes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('publicacao_id')->constrained('publicacoes')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('reacoes');
+        Schema::dropIfExists('publicacao_visualizacoes');
         Schema::dropIfExists('comentarios');
         Schema::dropIfExists('publicacoes');
         Schema::dropIfExists('midias');

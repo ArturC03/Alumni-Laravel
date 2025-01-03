@@ -7,11 +7,12 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,7 @@ class User extends Authenticatable
 
     /** @use HasFactory<UserFactory> */
     use HasFactory;
+
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
@@ -29,8 +31,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $primaryKey = 'id';
+
     public $timestamps = true;
+
     protected $table = 'users';
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     protected $fillable = [
@@ -80,7 +85,7 @@ class User extends Authenticatable
     public function follow(User $user)
     {
         // Verifica se o usuário está autenticado
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('error', 'Você precisa estar autenticado para seguir alguém.');
         }
 
@@ -88,17 +93,17 @@ class User extends Authenticatable
         $authenticatedUser = auth()->user();
 
         // Confere se o usuário já está seguindo
-        if ($authenticatedUser && !$authenticatedUser->following()->where('following_id', $user->id)->exists()) {
+        if ($authenticatedUser && ! $authenticatedUser->following()->where('following_id', $user->id)->exists()) {
             $authenticatedUser->following()->attach($user->id); // Conecta o usuário na relação de seguidores
         }
 
-        return back()->with('success', 'Você começou a seguir ' . $user->name);
+        return back()->with('success', 'Você começou a seguir '.$user->name);
     }
 
     public function unfollow(User $user)
     {
         // Verifica se o usuário está autenticado
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('error', 'Você precisa estar autenticado para parar de seguir alguém.');
         }
 
@@ -110,7 +115,7 @@ class User extends Authenticatable
             $authenticatedUser->following()->detach($user->id);
         }
 
-        return back()->with('success', 'Você deixou de seguir ' . $user->name);
+        return back()->with('success', 'Você deixou de seguir '.$user->name);
     }
 
     public function isFollowing(User $user)
@@ -134,15 +139,15 @@ class User extends Authenticatable
 
     public function Reagiu($publicacao_id): bool
     {
-        if($this->reacoes()->where('publicacao_id', $publicacao_id)->exists()) {
+        if ($this->reacoes()->where('publicacao_id', $publicacao_id)->exists()) {
             $likeState = $this->reacoes()->where('publicacao_id', $publicacao_id)->first()->like;
         } else {
             $likeState = false;
         }
+
         // Verifica se o usuário já reagiu à publicação (pode ajustar para ser também para comentários se necessário)
         return $likeState;
     }
-
 
     public function cargo()
     {
@@ -154,16 +159,24 @@ class User extends Authenticatable
         return $this->hasMany(Publicacao::class);
     }
 
-    public function visibilidade() {
+    public function visibilidade()
+    {
         return $this->hasMany(visibilidade::class);
     }
 
-    public function reacoes() {
+    public function reacoes()
+    {
         return $this->hasMany(Reacao::class);
     }
 
-    public function comentarios() {
+    public function comentarios()
+    {
         return $this->hasMany(Comentario::class);
+    }
+
+    public function visualizacoes()
+    {
+        return $this->hasMany(PublicacaoVisualizacao::class);
     }
 
     // Usuários que este usuário está seguindo
@@ -187,5 +200,4 @@ class User extends Authenticatable
             'follower_id'         // Coluna pivot que representa quem segue
         )->withTimestamps();
     }
-
 }
