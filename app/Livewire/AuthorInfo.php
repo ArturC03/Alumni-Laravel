@@ -2,22 +2,20 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\User;
+use Livewire\Component;
 
 class AuthorInfo extends Component
 {
     public $author;
-    public $isFollowing = false;
+
     public $nickname;
 
     public function mount(User $author): void
     {
         $this->author = $author;
-        $this->isFollowing = auth()->user()->isFollowing($author) ?? false;
         $this->nickname = $author->nickname;
     }
-
 
     public function render()
     {

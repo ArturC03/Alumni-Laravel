@@ -161,7 +161,7 @@ class User extends Authenticatable
 
     public function visibilidade()
     {
-        return $this->hasMany(visibilidade::class);
+        return $this->belongsTo(Visibilidade::class);
     }
 
     public function reacoes()
@@ -199,5 +199,16 @@ class User extends Authenticatable
             'following_id',       // Coluna pivot que representa quem está sendo seguido
             'follower_id'         // Coluna pivot que representa quem segue
         )->withTimestamps();
+    }
+
+    public function VisualizarPublicacao(Publicacao $publicacao)
+    {
+        $visualizou = $publicacao->publicacaoVisualizacoes()->where('user_id', $this->id)->exists();
+        if (! $visualizou) {
+            $publicacao->publicacaoVisualizacoes()->create([
+                'user_id' => $this->id,
+                'created_at' => now(),
+            ]);
+        }
     }
 }

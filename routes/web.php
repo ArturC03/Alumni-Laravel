@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PublicacaoController;
-use Illuminate\Support\Facades\Route;
-use App\Models\Publicacao;
-use App\Models\User;
-use \App\Http\Controllers\WelcomeController;
-use \App\Http\Controllers\FollowerController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\WelcomeController;
+use App\Models\User;
+use Illuminate\Support\Facades\Route;
 
 Route::get(
     '/',
@@ -35,8 +34,12 @@ Route::middleware([
     )->name('publicacao.guardar');
 });
 
+Route::get('/publicacao/{publicacao}', [PublicacaoController::class, 'index'])
+    ->name('publicacao.index');
+
 Route::get('/set-theme/{theme}', function ($theme) {
     session(['theme' => $theme]);
+
     return response()->json(['status' => 'success']);
 });
 

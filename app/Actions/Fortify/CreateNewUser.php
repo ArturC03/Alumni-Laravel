@@ -18,6 +18,7 @@ class CreateNewUser implements CreatesNewUsers
      * Validate and create a newly registered user.
      *
      * @param  array<string, string>  $input
+     *
      * @noinspection UnknownColumnInspection
      */
     public function create(array $input): User
@@ -29,8 +30,7 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-
-        if(isset($input['cargo_id'])) {
+        if (isset($input['cargo_id'])) {
             $cargoId = $input['cargo_id'];
 
         } elseif (isset($input['nome_cargo'])) {
@@ -40,9 +40,9 @@ class CreateNewUser implements CreatesNewUsers
         }
 
         if (isset($input['nome_visibilidade'])) {
-            $visibilidadeId = Visibilidade::where('nome', strtolower($input['nome_visibilidade']))->value('id');
+            $visibilidadeId = Visibilidade::where('estado', strtolower($input['nome_visibilidade']))->value('id');
         } else {
-            $visibilidadeId = Visibilidade::where('nome', 'Público')->value('id') ?? Visibilidade::where('nome', 'Público')->first()->id;
+            $visibilidadeId = Visibilidade::where('estado', 'Público')->value('id') ?? Visibilidade::where('nome', 'Público')->first()->id;
         }
 
         return User::create([

@@ -19,7 +19,7 @@ return new class extends Migration
 
         Schema::create('visibilidades', function (Blueprint $table) {
             $table->id();
-            $table->enum('nome', ['privado', 'público']);
+            $table->enum('estado', ['Privado', 'Público', 'Arquivado']);
             $table->timestamps();
         });
 

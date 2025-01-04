@@ -67,15 +67,15 @@
                         <!-- Estatísticas -->
                         <div class="mt-4 flex gap-6">
                             <a href="#publicacoes" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                                <span class="font-bold">{{ $user->publicacoes_count }}</span>
+                                <span class="font-bold">{{ $user->publicacoes->count() }}</span>
                                 <span>Publicações</span>
                             </a>
                             <a href="#seguidores" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                                <span class="font-bold">{{ $user->followers_count }}</span>
+                                <span class="font-bold">{{ $user->followers->count() }}</span>
                                 <span>Seguidores</span>
                             </a>
                             <a href="#seguindo" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                                <span class="font-bold">{{ $user->following_count }}</span>
+                                <span class="font-bold">{{ $user->following->count() }}</span>
                                 <span>A seguir</span>
                             </a>
                         </div>

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Publicacao;
-use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserProfileController extends Controller
 {
+    /**
+     * Mostra o perfil do utilizador.
+     *
+     * @param  string  $identifier  - ID ou nickname do usuário
+     * @return \Illuminate\View\View
+     */
     public function show($identifier)
     {
         // Buscar o utilizador pelo ID ou nickname

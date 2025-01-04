@@ -83,7 +83,7 @@
                                     value="{{ $visibilidade->id }}"
                                     {{ old('visibilidade_id') == $visibilidade->id ? 'selected' : '' }}
                                 >
-                                    {{ $visibilidade->nome }}
+                                    {{ $visibilidade->estado }}
                                 </option>
                             @endforeach
                         </select>

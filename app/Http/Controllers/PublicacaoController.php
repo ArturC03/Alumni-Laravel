@@ -11,6 +11,32 @@ use Illuminate\Support\Facades\DB;
 
 class PublicacaoController extends Controller
 {
+    public function index(Publicacao $publicacao)
+    {
+        // Increment view count if authenticated user hasn't viewed yet today
+        if (auth()->check()) {
+          auth()->user()->VisualizarPublicacao($publicacao);
+        }
+
+        // Check if publication can be viewed by current user
+        if (! $publicacao->CanBeViewedBy(auth()->user())) {
+            abort(403, 'Não tens permissão para visualizar esta publicação.');
+        }
+
+        // Load necessary relationships
+        $publicacao->load([
+            'user',
+            'midia',
+            'reacoes',
+            'comentarios' => function ($query) {
+                $query->with('user')
+                    ->orderBy('created_at', 'desc');
+            },
+        ]);
+
+        return view('publicacao.index', compact('publicacao'));
+    }
+
     public function criar()
     {
         $visibilidades = Visibilidade::all();
@@ -34,7 +60,7 @@ class PublicacaoController extends Controller
 
         try {
             // Criar a publicação
-                $publicacao = Publicacao::create($validatedData);
+            $publicacao = Publicacao::create($validatedData);
 
             // Processar mídia, se existir
             if ($request->hasFile('midia')) {
@@ -43,6 +69,7 @@ class PublicacaoController extends Controller
 
             // Confirmar transação
             DB::commit();
+            
 
             return redirect()->route('home')->with('success', 'Publicação criada com sucesso!');
         } catch (Exception $e) {
@@ -50,7 +77,7 @@ class PublicacaoController extends Controller
             DB::rollBack();
 
             return redirect()->back()->withErrors([
-                'error' => 'Erro ao criar a publicação: ' . $e->getMessage(),
+                'error' => 'Erro ao criar a publicação: '.$e->getMessage(),
             ]);
         }
     }
@@ -73,7 +100,4 @@ class PublicacaoController extends Controller
         // Associar a mídia à publicação
         $publicacao->update(['midia_id' => $midia->id]);
     }
-
-
-
 }
