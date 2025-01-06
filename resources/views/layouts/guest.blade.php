@@ -9,12 +9,12 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
         <!-- Bladewind -->
-        <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,28 +22,32 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body class="bg-gray-50 dark:bg-secondary-900 text-secondary-900 dark:text-secondary-50 font-sans antialiased bg-center bg-repeat" style="background-image: url({{ asset('/images/dots.svg') }})">
 
+        <!-- Navegação -->
         @livewire('navigation-menu')
         <x-banner />
 
-        <div class="min-h-screen bg-secondary-50 dark:bg-secondary-900">
+        <div class="min-h-screen">
 
             @if (isset($header))
-                    <header class="bg-white dark:bg-secondary-800 dark:text-secondary-50 shadow">
+                <header class="dark:text-secondary-50 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endif
 
-            <!-- Page Content -->
-            <main>
+            <!-- Conteúdo principal -->
+            <main class="mx-auto md:w-[85%] lg:w-[90%]">
                 {{ $slot }}
             </main>
         </div>
 
+        @stack('modals')
+
         @livewireScripts
+
         <!-- Bladewind JS -->
         <script src="{{ asset('vendor/bladewind/js/helpers.js') }}" type="text/javascript"></script>
 
@@ -54,7 +58,6 @@
 
                 // Send preference to the server using an AJAX request (or store it in localStorage)
                 if (prefersDarkMode) {
-                    // Set dark mode in session (via a GET request, for example)
                     fetch('/set-theme/dark');
                 } else {
                     fetch('/set-theme/light');

@@ -7,7 +7,7 @@
         </a>
         <div class="ml-4 flex-1">
             <a href="{{ route('perfil.show',  $author->id) }}">
-                <h2 class="text-base font-semibold text-secondary-500 dark:text-primary-100 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+                <h2 class="w-fit text-base font-semibold text-secondary-500 dark:text-primary-100 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
                     {{ $author->name }}
                 </h2>
             </a>

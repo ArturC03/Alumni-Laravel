@@ -1,4 +1,4 @@
-<div wire:poll.5s class="bg-gray-50 dark:bg-secondary-900 border-t border-gray-200 dark:border-secondary-700 px-4 py-3">
+<div onclick="event.stopPropagation();" wire:poll.5s class="border-t border-gray-200 dark:border-secondary-700 px-4 py-3">
     @auth
         <!-- Campo para adicionar um novo comentário -->
         <div class="flex items-start space-x-3 mb-5">

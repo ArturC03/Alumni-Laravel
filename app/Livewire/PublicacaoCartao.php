@@ -18,10 +18,10 @@ class PublicacaoCartao extends Component
      *
      * @param  Publicacao  $publicacao  - Objeto da publicação
      */
-    public function mount(Publicacao $publicacao)
+    public function mount(Publicacao $publicacao, bool $mostrarComentarios = false)
     {
         $this->publicacao = $publicacao;
-        $this->mostrarComentarios = false; // Inicializando como falso para cada componente
+        $this->mostrarComentarios = true; // Inicializando como falso para cada componente
     }
 
     /**

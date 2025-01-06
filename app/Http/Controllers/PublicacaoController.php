@@ -15,7 +15,7 @@ class PublicacaoController extends Controller
     {
         // Increment view count if authenticated user hasn't viewed yet today
         if (auth()->check()) {
-          auth()->user()->VisualizarPublicacao($publicacao);
+            auth()->user()->VisualizarPublicacao($publicacao);
         }
 
         // Check if publication can be viewed by current user
@@ -69,7 +69,6 @@ class PublicacaoController extends Controller
 
             // Confirmar transação
             DB::commit();
-            
 
             return redirect()->route('home')->with('success', 'Publicação criada com sucesso!');
         } catch (Exception $e) {

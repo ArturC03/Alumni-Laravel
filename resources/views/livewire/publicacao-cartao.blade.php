@@ -1,7 +1,7 @@
 <div>
     @if($publicacao->CanBeViewedBy(auth()->user()))
         <div class="bg-white dark:bg-secondary-500 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-200"
-             onclick="window.location=`{{ route('publicacao.index', $publicacao) }}`">
+             {{ (url()->current() === route('publicacao.index', $publicacao)) ? '' : 'onclick="window.location=`' . route('publicacao.index', $publicacao) . '`"'}}>
 
             <!-- Informações do Autor -->
             <div>
