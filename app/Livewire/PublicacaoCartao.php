@@ -21,7 +21,7 @@ class PublicacaoCartao extends Component
     public function mount(Publicacao $publicacao, bool $mostrarComentarios = false)
     {
         $this->publicacao = $publicacao;
-        $this->mostrarComentarios = true; // Inicializando como falso para cada componente
+        $this->mostrarComentarios = $mostrarComentarios; // Inicializando como falso para cada componente
     }
 
     /**

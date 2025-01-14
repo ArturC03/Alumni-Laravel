@@ -2,7 +2,8 @@
     @auth
         <!-- Campo para adicionar um novo comentário -->
         <div class="flex items-start space-x-3 mb-5">
-            <!-- Foto do Usuário -->
+        <!-- Foto do Usuário -->
+        <a href=route('perfil.show', $user))"></a>
             <img src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}" class="w-8 h-8 rounded-full">
             <!-- Área de Texto -->
             <div class="flex-grow">

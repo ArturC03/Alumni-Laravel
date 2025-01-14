@@ -8,7 +8,7 @@ use Livewire\Component;
 class FollowCartao extends Component
 {
     protected $rules = [
-        'User' => 'required|exists:users,id',
+        'user' => 'required|exists:users,id',
     ];
 
     public $user;
@@ -20,6 +20,12 @@ class FollowCartao extends Component
 
     public function render()
     {
+        if (auth()->check()) {
+            if ($this->user->id == auth()->user()->id) {
+                return '<div></div>';
+            }
+        }
+
         return view('livewire.follow-cartao', [
             'user' => $this->user,
         ]);

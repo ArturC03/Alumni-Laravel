@@ -39,7 +39,6 @@ Route::get('/publicacao/{publicacao}', [PublicacaoController::class, 'index'])
 
 Route::get('/set-theme/{theme}', function ($theme) {
     session(['theme' => $theme]);
-
     return response()->json(['status' => 'success']);
 });
 
@@ -56,3 +55,5 @@ Route::post('/comentarios/{publicacao}', [ComentarioController::class, 'store'])
 
 Route::get('/perfil/{identifier}', [UserProfileController::class, 'show'])
     ->name('perfil.show');
+
+Route::get('/perfis', [UserProfileController::class, 'index']);

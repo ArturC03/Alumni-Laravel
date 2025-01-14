@@ -38,4 +38,14 @@ class UserProfileController extends Controller
             'publicacoes_total' => $publicacoes_total,
         ]);
     }
+
+public function index()
+{
+    $users = User::All();
+
+    return view('users.index', [
+        'users' => $users,
+    ]);
+}
+
 }

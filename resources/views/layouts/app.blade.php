@@ -25,6 +25,11 @@
     </head>
     <body class="bg-gray-50 dark:bg-secondary-900 text-secondary-900 dark:text-secondary-50 font-sans antialiased bg-center bg-repeat" style="background-image: url({{ asset('/images/dots.svg') }})">
 
+
+<x-scroll-to-top-button class="flex justify-center items-center h-12 w-12 bg-primary-500 text-white rounded-full">
+    <x-bladewind::icon name="arrow-up" />
+</x-scroll-to-top-button>
+
         <!-- Navegação -->
         @livewire('navigation-menu')
         <x-banner />

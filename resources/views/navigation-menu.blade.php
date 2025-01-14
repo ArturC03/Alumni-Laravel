@@ -10,8 +10,8 @@
                 </div>
 
                 <div class="hidden sm:flex space-x-8 sm:-my-px sm:ml-10">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
+                        {{ __('Início') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     </x-slot>
                     <x-slot name="content">
                         <x-dropdown-link href="{{ route('profile.show') }}">
-                            {{ __('Profile') }}
+                            {{ __('Definições') }}
                         </x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
@@ -74,7 +74,7 @@
                     @if (Route::has('register'))
                     <a href="{{ route('register') }}"
                         class="ml-4 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-                        {{ __('Register') }}
+                        {{ __('Registar') }}
                     </a>
                     @endif
                 </div>
@@ -100,14 +100,14 @@
     <!-- Responsivo -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
+                {{ __('Início') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             @auth
             <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                {{ __('Profile') }}
+                {{ __('Definições') }}
             </x-responsive-nav-link>
             <form method="POST" action="{{ route('logout') }}" x-data>
                 @csrf
@@ -121,7 +121,7 @@
             </x-responsive-nav-link>
             @if (Route::has('register'))
             <x-responsive-nav-link href="{{ route('register') }}">
-                {{ __('Register') }}
+                {{ __('Criar Conta') }}
             </x-responsive-nav-link>
             @endif
             @endauth

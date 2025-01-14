@@ -1,7 +1,7 @@
 <div>
     @if($publicacao->CanBeViewedBy(auth()->user()))
-        <div class="bg-white dark:bg-secondary-500 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-200"
-             {{ (url()->current() === route('publicacao.index', $publicacao)) ? '' : 'onclick="window.location=`' . route('publicacao.index', $publicacao) . '`"'}}>
+        <div wire:mouseover="VisualizarPublicacao" class="bg-white dark:bg-secondary-500 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-200"
+             onclick="window.location=`{{ (url()->current() === route('publicacao.index', $publicacao)) ? '' : route('publicacao.index', $publicacao) }}`">
 
             <!-- Informações do Autor -->
             <div>
@@ -75,7 +75,7 @@
                     </button>
 
                     <!-- Botão de Visualizações -->
-                    <button wire:mouseover="VisualizarPublicacao" onclick="event.stopPropagation();" class="relative flex items-center space-x-2 group">
+                    <button  onclick="event.stopPropagation();" class="relative flex items-center space-x-2 group">
                         <div class="relative flex justify-center items-center">
                             <x-bladewind::icon
                                 name="eye"

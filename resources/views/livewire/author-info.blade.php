@@ -1,4 +1,4 @@
-    <div class="px-6 py-4 flex items-center border-b border-primary-100 dark:border-secondary-400">
+    <div class="px-6 py-4 flex items-center border-none border-primary-100 dark:border-secondary-400">
         <a href="{{ route('perfil.show',  $author->id) }}">
             <img
                 src="{{ $author->profile_photo_url }}"

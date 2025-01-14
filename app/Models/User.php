@@ -211,4 +211,17 @@ class User extends Authenticatable
             ]);
         }
     }
+
+    public static function Search($query)
+    {
+        return User::query()
+            ->when($query, function ($query) {
+                $query->where(function ($query) {
+                    $query->where('nickname', 'like', "%{$query}%")
+                        ->orWhere('name', 'like', "%{$query}%")
+                        ->orWhere('email', 'like', "%{$query}%");
+                });
+            })
+            ->get();
+    }
 }

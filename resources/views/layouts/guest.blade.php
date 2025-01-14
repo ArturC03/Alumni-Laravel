@@ -30,6 +30,10 @@
 
         <div class="min-h-screen">
 
+<x-scroll-to-top-button class="flex justify-center items-center h-12 w-12 bg-primary-500 text-white rounded-full">
+    <x-bladewind::icon name="arrow-up" />
+</x-scroll-to-top-button>
+
             @if (isset($header))
                 <header class="dark:text-secondary-50 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
