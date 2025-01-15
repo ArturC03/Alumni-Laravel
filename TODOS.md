@@ -1,0 +1,28 @@
+- [ ] Página Publicações
+	- [x] Skeleton
+	- [ ] Filtros - Following, Trending, Search, ...
+- [ ] Página Perfil
+	- [x] Skeleton
+	- [x] Mostrar Publicações
+	- [ ] Mostrar Seguidores/A Seguir
+- [ ] Página Notícias
+	- [ ] Skeleton
+	- [ ] Mostrar Notícias
+	- [ ] Filtros - Data, ...
+- [ ] Página Eventos
+	- [ ] Skeleton
+	- [ ] Mostrar Eventos
+	- [ ] Filtrar - Data, Curso, Ano Letivo (1º Ano do curso), ...
+- [ ] Dashboard
+	- [ ] Skeleton
+	- [ ] Separadores
+		- [ ] Utilizadores
+		- [ ] Notícias
+		- [ ] Eventos
+- [ ] Chat
+	- [ ] Skeleton
+		- [ ] Chat Privado
+		- [ ] Group Chats
+	- [ ] Mostrar
+		- [ ] Lista de Chats
+		- [ ] Mostrar Chat
