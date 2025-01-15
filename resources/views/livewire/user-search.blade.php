@@ -3,7 +3,7 @@
         {{-- Campo de Pesquisa --}}
         <input
             type="text"
-            wire:model.live.debounce.100ms="search"
+            wire:model.blur="search"
             placeholder="Pesquisar por nome, email ou nickname..."
             class="w-full border-secondary-300 dark:border-secondary-50 dark:bg-secondary text-secondary-800 dark:text-secondary-50 focus:border-primary-500 dark:focus:border-primary-500 focus:ring-primary-500 dark:focus:ring-primary-500 rounded-md shadow-md px-4 py-2"
         >
