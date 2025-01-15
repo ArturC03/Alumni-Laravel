@@ -5,7 +5,17 @@
             <section class="flex-1 min-w-0">
                 <div class="grid gap-6 justify-items-center">
                     <div class="px-4 w-full max-w-[30rem] lg:w-[30rem]">
-                        </div>
+                        <a href="{{route('perfis')}}">
+                            <x-button class="w-full">
+                                <x-bladewind::icon type="outline" name="magnifying-glass" />
+                            </x-button>
+
+                            <x-button class="w-full">
+                                <x-bladewind::icon type="outline" name="magnifying-glass" />
+                            </x-button>
+
+                        </a>
+                    </div>
                     @forelse($publicacoes as $publicacao)
                     <div class="px-4 my-2 w-full max-w-[30rem] lg:w-[30rem]">
                         <livewire:publicacao-cartao :publicacao="$publicacao" />

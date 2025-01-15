@@ -1,20 +1,24 @@
-<div>
-    <div class="mb-4">
+<div class="px-4 w-full max-w-[30rem] lg:w-[30rem]">
+    <div class="mb-6">
+        {{-- Campo de Pesquisa --}}
         <input
             type="text"
             wire:model.live="search"
             placeholder="Pesquisar por nome, email ou nickname..."
-            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="w-full border-secondary-300 dark:border-secondary-50 dark:bg-secondary text-secondary-800 dark:text-secondary-50 focus:border-primary-500 dark:focus:border-primary-500 focus:ring-primary-500 dark:focus:ring-primary-500 rounded-md shadow-md px-4 py-2"
         >
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {{-- Resultados da Pesquisa --}}
+    <div class="grid grid-cols-1 gap-6">
         @forelse ($users as $user)
             <livewire:follow-cartao :user="$user" :key="$user->id" />
         @empty
-            <div class="col-span-full text-center text-gray-500">
-                Nenhum usuário encontrado
+            <div class="text-center text-gray-500">
+                <x-bladewind::icon type="user" class="w-12 h-12 mx-auto text-gray-400" />
+                <p class="mt-4">Nenhum usuário encontrado</p>
             </div>
         @endforelse
     </div>
 </div>
+
