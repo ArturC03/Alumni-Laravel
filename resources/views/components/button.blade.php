@@ -1,6 +1,11 @@
 <button
+    @if(isset($href))
+        onclick="window.location.href='{{ $href }}';"
+        type="button"
+    @else
+        {{ $attributes->merge(['type' => 'submit']) }}
+    @endif
     {{ $attributes->merge([
-        'type' => 'submit',
         'class' => '
             inline-flex
             items-center
@@ -20,9 +25,10 @@
             focus:ring-2
             focus:ring-primary/50
             focus:ring-offset-2
-            dark:bg-secondary-50
-            dark:text-secondary-800
-            dark:hover:bg-secondary-100
+            dark:bg-secondary-800
+            dark:text-secondary-200
+            dark:hover:bg-secondary-700
+            dark:text-white
             dark:focus:ring-primary
             dark:focus:ring-offset-secondary-400
             disabled:opacity-50
